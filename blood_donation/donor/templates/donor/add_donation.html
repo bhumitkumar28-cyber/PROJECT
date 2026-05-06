@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Add Donation{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white text-center">
+                <i class="fas fa-tint fa-2x mb-2"></i>
+                <h3>Add New Donation</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Date of Donation</label>
+                        {{ form.date }}
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Blood Group</label>
+                            {{ form.blood_group }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Units Donated</label>
+                            {{ form.units }}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Recipient/Hospital</label>
+                        {{ form.recipient }}
+                    </div>
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="/donor/dashboard/" class="btn btn-secondary me-md-2">
+                            <i class="fas fa-arrow-left"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Save Donation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-3 text-center">
+            <i class="fas fa-info-circle"></i> 
+            Next donation eligible after 90 days from last donation
+        </div>
+    </div>
+</div>
+{% endblock %}

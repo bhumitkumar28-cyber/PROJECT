@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Donation Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <!-- ✅ FIXED NAVBAR - Line 15 -->
+            <ul class="nav-links">
+                <li><a href="{% url 'core:home' %}" class="nav-btn">Home</a></li>
+                <li><a href="{% url 'core:about' %}" class="nav-btn">About</a></li>
+                <li><a href="{% url 'core:how_it_works' %}" class="nav-btn">How It Works</a></li>
+                <li><a href="{% url 'core:contact' %}" class="nav-btn">Contact</a></li>
+            </ul>
+            <div class="logo">DonationHub</div>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="hi">हिं</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 data-translate="about.hero_title">About DonationHub</h1>
+                <p data-translate="about.hero_desc">Connecting generous hearts with those in need. Our mission is to create a world where no one goes without help.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title" data-translate="about.our_mission">Our Mission</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3 data-translate="about.mission1_title">Empower Giving</h3>
+                        <p data-translate="about.mission1_desc">Make donating simple, transparent, and impactful for everyone.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <h3 data-translate="about.mission2_title">Build Community</h3>
+                        <p data-translate="about.mission2_desc">Connect donors and requesters in a trusted, supportive network.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                        <h3 data-translate="about.mission3_title">Global Impact</h3>
+                        <p data-translate="about.mission3_desc">Support causes worldwide with secure, efficient platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section stats">
+            <div class="container">
+                <div class="stat">
+                    <div class="stat-number" data-translate="about.stats1">50K+</div>
+                    <div data-translate="about.stats1_label">Donors</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-translate="about.stats2">120K+</div>
+                    <div data-translate="about.stats2_label">Requests Fulfilled</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-translate="about.stats3">$2.5M+</div>
+                    <div data-translate="about.stats3_label">Raised</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title" data-translate="about.our_team">Our Team</h2>
+                <div class="team">
+                    <div class="team-member">
+                        <div class="team-img">👨‍💼</div>
+                        <h3 data-translate="about.team1_name">PRATEEK BHARADWAJ</h3>
+                        <p data-translate="about.team1_role">Founder & CEO</p>
+                    </div>
+                    <div class="team-member">
+                        <!-- ✅ REMOVED BAD NAVBAR FROM HERE (Lines 104-116) -->
+                        <div class="team-img">
+                            <img 
+                                src="{% static 'image/bhumit.jpg' %}" 
+                                alt="Bhumit Kumar"
+                                style="width:140px; height:140px; border-radius:50%; object-fit:cover; display:block; margin:0 auto 20px;">
+                        </div>
+                        <h3 data-translate="about.team2_name">BHUMIT KUMAR</h3>
+                        <p data-translate="about.team2_role">Tech Lead</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-translate="about.footer">&copy; 2024 DonationHub. Making a difference, together.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/about.js' %}"></script>
+</body>
+</html>

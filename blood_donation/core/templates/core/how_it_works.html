@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Donation Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/how_it_works.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">DonationHub</div>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="hi">हिं</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 data-translate="how.hero_title">How It Works</h1>
+                <p data-translate="how.hero_desc">Simple, transparent, and secure. Get started in 3 easy steps.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="donor" data-translate="how.donor_tab">For Donors</button>
+                    <button class="tab-btn" data-tab="requester" data-translate="how.requester_tab">For Requesters</button>
+                </div>
+
+                <div id="donor" class="tab-content active">
+                    <h2 class="section-title" data-translate="how.donor_title">Donor Journey</h2>
+                    <p class="section-subtitle" data-translate="how.donor_subtitle">Help those in need with just a few clicks.</p>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3 data-translate="how.donor_step1_title">Browse Requests</h3>
+                            <p data-translate="how.donor_step1_desc">Discover verified requests from people who need help.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3 data-translate="how.donor_step2_title">Choose & Donate</h3>
+                            <p data-translate="how.donor_step2_desc">Select your preferred cause and donate securely.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3 data-translate="how.donor_step3_title">See Impact</h3>
+                            <p data-translate="how.donor_step3_desc">Track your donation and see real stories of impact.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="requester" class="tab-content">
+                    <h2 class="section-title" data-translate="how.requester_title">Requester Journey</h2>
+                    <p class="section-subtitle" data-translate="how.requester_subtitle">Get the help you need from our community.</p>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3 data-translate="how.requester_step1_title">Create Request</h3>
+                            <p data-translate="how.requester_step1_desc">Tell your story and specify what you need.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3 data-translate="how.requester_step2_title">Get Verified</h3>
+                            <p data-translate="how.requester_step2_desc">Our team reviews and verifies your request.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3 data-translate="how.requester_step3_title">Receive Help</h3>
+                            <p data-translate="how.requester_step3_desc">Connect with donors and receive support directly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt-section">
+            <div class="container">
+                <h2 class="section-title" data-translate="how.process_title">Our Process</h2>
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="process-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3 data-translate="how.process1_title">100% Verified</h3>
+                        <p data-translate="how.process1_desc">Every request goes through strict verification.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-icon"><i class="fas fa-lock"></i></div>
+                        <h3 data-translate="how.process2_title">Secure Payments</h3>
+                        <p data-translate="how.process2_desc">Bank-level security for all transactions.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-icon"><i class="fas fa-clock"></i></div>
+                        <h3 data-translate="how.process3_title">Fast Processing</h3>
+                        <p data-translate="how.process3_desc">Most requests fulfilled within 48 hours.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-icon"><i class="fas fa-receipt"></i></div>
+                        <h3 data-translate="how.process4_title">Transparent</h3>
+                        <p data-translate="how.process4_desc">Full transparency on every donation made.</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn" data-translate="how.get_started">Get Started Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{% static 'js/how_it_works.js' %}"></script>
+</body>
+</html>

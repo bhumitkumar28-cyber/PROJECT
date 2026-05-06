@@ -1,0 +1,63 @@
+/* static/donor/css/donor.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+
+.donor-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover { transform: translateY(-10px); box-shadow: 0 35px 60px rgba(0,0,0,0.2); }
+
+.glass-card h2 { color: white; margin-bottom: 1.5rem; font-weight: 600; }
+
+/* Dashboard Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+.stat-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+}
+.stat-number { font-size: 2.5rem; font-weight: 700; }
+
+/* Forms */
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { color: white; display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-control {
+    width: 100%; padding: 12px 15px; border: none;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+}
+.form-control::placeholder { color: rgba(255,255,255,0.7); }
+.form-control:focus { outline: none; box-shadow: 0 0 20px rgba(255,255,255,0.3); background: rgba(255,255,255,0.3); }
+
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    border: none; padding: 12px 30px; border-radius: 50px;
+    color: white; font-weight: 600; cursor: pointer;
+    transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(255,107,107,0.6); }
+
+/* List & Detail */
+.donor-item { display: flex; align-items: center; padding: 1rem; margin-bottom: 1rem; border-radius: 15px; background: rgba(255,255,255,0.1); }
+.donor-info h4 { color: white; margin-bottom: 0.5rem; }
+
+/* Responsive */
+@media (max-width: 768px) { .glass-card { padding: 1.5rem; } .stats-grid { grid-template-columns: 1fr; } }

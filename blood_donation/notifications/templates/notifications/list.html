@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>🔔 Notifications ({{ unread_count }} unread)</h2>
+    {% if notifications %}
+    <div class="list-group">
+        {% for n in notifications %}
+        <div class="list-group-item {% if not n.is_read %}active{% endif %}">
+            <div class="d-flex justify-content-between">
+                <h6>{{ n.title }}</h6>
+                <small>{{ n.created_at|date:"M d, H:i" }}</small>
+            </div>
+            <p class="mb-1">{{ n.message }}</p>
+            {% if not n.is_read %}
+            <button class="btn btn-sm btn-outline-light mark-read" data-id="{{ n.id }}">Mark Read</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">No notifications yet!</div>
+    {% endif %}
+    <a href="{% url 'notifications:settings' %}" class="btn btn-primary mt-3">Settings</a>
+</div>
+
+<script>
+document.querySelectorAll('.mark-read').forEach(btn => {
+    btn.onclick = () => {
+        fetch('{% url "notifications:mark_read" %}', {
+            method: 'POST',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            body: new URLSearchParams({id: btn.dataset.id})
+        }).then(() => location.reload());
+    }
+});
+</script>
+{% endblock %}

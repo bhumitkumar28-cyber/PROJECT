@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloodBank – Save Lives, Donate Blood</title>
+ <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">BloodBank</div>
+    <ul class="nav-links">
+        <li><a href="{% url 'core:home' %}" class="nav-btn">Home</a></li>
+        <li><a href="{% url 'core:about' %}" class="nav-btn">About</a></li>
+        <li><a href="{% url 'core:how_it_works' %}" class="nav-btn">How It Works</a></li>
+        <li><a href="{% url 'core:contact' %}" class="nav-btn">Contact</a></li>
+        <li><a href="/admin-panel/" class="nav-btn">Admin</a></li>  <!-- BONUS: Admin link -->
+    </ul>
+</nav>
+
+  <section class="hero">
+    <h1>Save Lives, Donate Blood</h1>
+    <p>One donation can save up to three lives. Join our network of life-saving donors in Agra, Mathura, and across India. Your generosity makes the difference in emergencies.</p>
+    <div class="hero-buttons">
+      <a href="find-donors.html" class="btn-hero btn-primary">Find Donors Now</a>
+      <a href="#" class="btn-hero btn-secondary">Become a Donor</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="helpline-section">
+      <div class="helpline-rotator" id="helpline-rotator">
+        <div class="helpline-label">📞 Emergency Helpline (24/7)</div>
+        <div class="helpline-number" id="helpline-number">______________</div>
+        <div class="helpline-details" id="helpline-details"><strong>Loading...</strong></div>
+        <div class="rotator-indicator" id="rotator-dots"></div>
+      </div>
+      <nav class="navbar">
+    <div class="nav-brand">BloodBank</div>
+   
+</nav>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Know Your Blood Group</h2>
+      <div class="blood-groups-grid">
+        <div class="blood-card A-plus"><div class="blood-header"><div class="blood-bgroup A-plus">A+</div><div class="blood-title">Blood Group A Positive</div></div><div class="blood-info"><strong>Can receive from:</strong> A+, A-, O+, O-<br><strong>Can donate to:</strong> A+, AB+</div><div class="blood-universally regular-giver">Can donate to 40% of population</div></div>
+        <div class="blood-card A-minus"><div class="blood-header"><div class="blood-bgroup A-minus">A-</div><div class="blood-title">Blood Group A Negative</div></div><div class="blood-info"><strong>Can receive from:</strong> A-, O-<br><strong>Can donate to:</strong> A+, A-, AB+, AB-</div><div class="blood-universally regular-giver">Universal donor for A negative & positive recipients</div></div>
+        <div class="blood-card B-plus"><div class="blood-header"><div class="blood-bgroup B-plus">B+</div><div class="blood-title">Blood Group B Positive</div></div><div class="blood-info"><strong>Can receive from:</strong> B+, B-, O+, O-<br><strong>Can donate to:</strong> B+, AB+</div><div class="blood-universally regular-giver">Can donate to 38% of population</div></div>
+        <div class="blood-card B-minus"><div class="blood-header"><div class="blood-bgroup B-minus">B-</div><div class="blood-title">Blood Group B Negative</div></div><div class="blood-info"><strong>Can receive from:</strong> B-, O-<br><strong>Can donate to:</strong> B+, B-, AB+, AB-</div><div class="blood-universally regular-giver">Universal donor for B negative & positive recipients</div></div>
+        <div class="blood-card AB-plus"><div class="blood-header"><div class="blood-bgroup AB-plus">AB+</div><div class="blood-title">Blood Group AB Positive</div></div><div class="blood-info"><strong>Can receive from:</strong> <strong>ALL</strong> blood groups<br><strong>Can donate to:</strong> AB+ only</div><div class="blood-universally universally-receiver">Universal recipient – can receive from anyone</div></div>
+        <div class="blood-card AB-minus"><div class="blood-header"><div class="blood-bgroup AB-minus">AB-</div><div class="blood-title">Blood Group AB Negative</div></div><div class="blood-info"><strong>Can receive from:</strong> AB-, A-, B-, O-<br><strong>Can donate to:</strong> AB+, AB-</div><div class="blood-universally regular-giver">Rare – only 1% of population</div></div>
+        <div class="blood-card O-plus"><div class="blood-header"><div class="blood-bgroup O-plus">O+</div><div class="blood-title">Blood Group O Positive</div></div><div class="blood-info"><strong>Can receive from:</strong> O+, O-<br><strong>Can donate to:</strong> <strong>ALL</strong> positive types</div><div class="blood-universally universally-giver">Most needed – can donate to 83% of population</div></div>
+        <div class="blood-card O-minus"><div class="blood-header"><div class="blood-bgroup O-minus">O-</div><div class="blood-title">Blood Group O Negative</div></div><div class="blood-info"><strong>Can receive from:</strong> O- only<br><strong>Can donate to:</strong> <strong>ALL</strong> blood groups</div><div class="blood-universally universally-giver">Universal donor – critical in emergencies</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">How It Works</h2>
+      <h3 style="text-align:center; color:#555; margin-bottom:1rem; font-size:1.2rem;">For Blood Donors</h3>
+      <div class="how-steps">
+        <div class="step-card"><div class="step-number">1</div><div class="step-title">Register as Donor</div><div class="step-desc">Create your profile with blood group, city, and contact details. Verify your identity to join the network.</div></div>
+        <div class="step-card"><div class="step-number">2</div><div class="step-title">Stay Eligible</div><div class="step-desc">Ensure you’re healthy, well-hydrated, and haven’t donated in the last 90 days (56 days for platelets).</div></div>
+        <div class="step-card"><div class="step-number">3</div><div class="step-title">Get Notified</div><div class="step-desc">Receive emergency requests in your city for your blood group. Respond instantly when you can help.</div></div>
+        <div class="step-card"><div class="step-number">4</div><div class="step-title">Donate & Save</div><div class="step-desc">Visit the requested blood bank/hospital. Your single donation can save up to three lives.</div></div>
+      </div>
+      <h3 style="text-align:center; color:#555; margin:2rem 0 1rem; font-size:1.2rem;">For Requesters (Patients/Families)</h3>
+      <div class="how-steps">
+        <div class="step-card"><div class="step-number">1</div><div class="step-title">Create Request</div><div class="step-desc">Log in and submit a blood request with patient details, required blood group, quantity, and hospital location.</div></div>
+        <div class="step-card"><div class="step-number">2</div><div class="step-title">Instant Matching</div><div class="step-desc">Our system instantly finds eligible donors in your city who are ready to donate ( ≥90 days since last donation).</div></div>
+        <div class="step-card"><div class="step-number">3</div><div class="step-title">Connect Directly</div><div class="step-desc">Get phone/email of matching donors. Contact them immediately to arrange donation at the nearest blood bank.</div></div>
+        <div class="step-card"><div class="step-number">4</div><div class="step-title">Update Status</div><div class="step-desc">Once blood is arranged, mark the request as “Fulfilled” to notify other donors and keep the database clean.</div></div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Make a Difference?</h2>
+      <p>Join 10,000+ life-savers in Uttar Pradesh. Whether you want to donate blood or request it in an emergency, we’re here 24/7 to connect you.</p>
+      <a href="find-donors.html" class="btn-cta">Find Donors Now</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2026 BloodBank – Save Lives, Donate Blood. Built for Agra, Mathura, and all of India.</p>
+    <p>Emergency Helpline: <strong>+91 81267 09463</strong> (Toll-Free, 24/7) | <a href="bhumitkumar28@gmail.com">bhumitkumar28@gmail.com</a></p>
+    <p style="margin-top:0.6rem; font-size:0.85rem;">This is a demo platform. For real emergencies, contact your nearest government blood bank or <a href="tel:108">108</a>.</p>
+  </footer>
+<script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>

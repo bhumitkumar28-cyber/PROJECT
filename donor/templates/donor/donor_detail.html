@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ donor.name }} - {{ donor.blood_group }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <a href="/donor/" class="btn btn-secondary mb-3">
+            <i class="fas fa-arrow-left"></i> Back to Donors
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow-lg">
+            <div class="card-header bg-gradient-primary text-white">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="mb-0">{{ donor.name }}</h3>
+                        <div class="badge bg-danger fs-6 px-3 py-2 mt-1">{{ donor.blood_group }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge bg-{{ donor.available|yesno:'success,danger' }} fs-5 px-4 py-2">
+                            {% if donor.available %}
+                                <i class="fas fa-check-circle"></i> Available Now
+                            {% else %}
+                                <i class="fas fa-clock"></i> Not Available
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-map-marker-alt text-danger"></i> Location</h6>
+                        <p class="fs-5">{{ donor.location }}</p>
+                        
+                        <h6><i class="fas fa-calendar text-info"></i> Last Donation</h6>
+                        <p>{{ donor.last_donation|date:"M d, Y"|default:"Never" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-phone text-success"></i> Contact</h6>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="tel:{{ donor.phone }}" class="btn btn-success btn-lg me-2">
+                                <i class="fas fa-phone"></i> Call
+                            </a>
+                            <a href="sms:{{ donor.phone }}?body=Hi%20I%20need%20{{ donor.blood_group }}%20blood" class="btn btn-outline-success">
+                                <i class="fas fa-sms"></i> Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h6 class="mb-0"><i class="fas fa-info-circle"></i> Quick Info</h6>
+            </div>
+            <div

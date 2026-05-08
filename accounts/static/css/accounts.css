@@ -1,0 +1,68 @@
+body {
+  background: linear-gradient(135deg, #1b2140 0%, #1f2f55 45%, #1d4b7a 100%);
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.custom-navbar {
+  background: rgba(20, 24, 48, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand,
+.nav-link {
+  color: #f8fafc !important;
+}
+
+.nav-link:hover {
+  color: #c7d2fe !important;
+}
+
+.login-card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.22) !important;
+  color: #e5e7eb;
+}
+
+.login-header {
+  background: linear-gradient(135deg, #5f7df7 0%, #9b6bdb 100%) !important;
+  border-bottom: none;
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.65rem;
+}
+
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: #8a7df2;
+  box-shadow: 0 0 0 3px rgba(138, 125, 242, 0.18);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #5f7df7 0%, #9b6bdb 100%) !important;
+  border: none !important;
+}
+
+.btn-outline-danger {
+  color: #e5e7eb !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.forgot-link {
+  color: #c7d2fe;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}

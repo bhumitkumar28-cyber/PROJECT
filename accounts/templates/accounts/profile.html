@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h3><i class="fas fa-user"></i> My Profile</h3>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" value="{{ user.username }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" value="{{ user.get_full_name }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">User Type</label>
+                            <input type="text" class="form-control" value="{{ profile.get_user_type_display }}" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" name="phone_number" class="form-control" 
+                                       value="{{ profile.phone_number|default:'' }}" placeholder="+91 9876543210">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Blood Group</label>
+                                <select name="blood_group" class="form-control">
+                                    <option value="">Select Blood Group</option>
+                                    <option value="A+" {% if profile.blood_group == 'A+' %}selected{% endif %}>A+</option>
+                                    <option value="A-" {% if profile.blood_group == 'A-' %}selected{% endif %}>A-</option>
+                                    <option value="B+" {% if profile.blood_group == 'B+' %}selected{% endif %}>B+</option>
+                                    <option value="B-" {% if profile.blood_group == 'B-' %}selected{% endif %}>B-</option>
+                                    <option value="AB+" {% if profile.blood_group == 'AB+' %}selected{% endif %}>AB+</option>
+                                    <option value="AB-" {% if profile.blood_group == 'AB-' %}selected{% endif %}>AB-</option>
+                                    <option value="O+" {% if profile.blood_group == 'O+' %}selected{% endif %}>O+</option>
+                                    <option value="O-" {% if profile.blood_group == 'O-' %}selected{% endif %}>O-</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <input type="text" name="city" class="form-control" value="{{ profile.city }}" placeholder="Agra">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea name="address" class="form-control" rows="3">{{ profile.address|default:'' }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-lg">
+                            <i class="fas fa-save"></i> Update Profile
+                        </button>
+                        <a href="{% url 'core:dashboard' %}" class="btn btn-secondary btn-lg ms-2">Dashboard</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'blood_inventory/base.html' %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1 class="display-5 fw-bold text-warning">
+            <i class="bi bi-bell-fill"></i> Low Stock Alerts
+        </h1>
+    </div>
+</div>
+
+{% if low_stock_alerts or critical_alerts %}
+    <!-- Critical Alerts -->
+    {% if critical_alerts %}
+    <div class="alert alert-danger mb-4">
+        <h3 class="alert-heading">
+            <i class="bi bi-exclamation-octagon-fill"></i> OUT OF STOCK!
+        </h3>
+        {% for stock in critical_alerts %}
+        <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded mt-2">
+            <strong>{{ stock.blood_group }}</strong> 
+            <span class="badge bg-danger fs-6">0 units</span>
+            <a href="{% url 'blood_inventory:update_stock' %}" class="btn btn-sm btn-danger">Restock</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- 👇 FIXED: Added ROW + FOR LOOP -->
+    <div class="row g-4 mb-5">
+        {% for stock in low_stock_alerts %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-warning shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">{{ stock.blood_group }}</h5>
+                </div>
+                <div class="card-body text-center p-4">
+                    <div class="display-4 fw-bold text-warning mb-3">{{ stock.quantity }}</div>
+                    <div class="progress mb-3" style="height: 30px;">
+    <!-- ✅ DIRECT (No variable needed) -->
+    <div class="progress-bar bg-warning" 
+         **style="width: {% widthratio stock.quantity stock.low_stock_threshold 100 %}%"**>
+        {% widthratio stock.quantity stock.low_stock_threshold 100 %}%
+    </div>
+</div>
+                    <h6 class="text-muted">Threshold: {{ stock.low_stock_threshold }}</h6>
+                </div>
+                <div class="card-footer bg-light border-0">
+                    <a href="{% url 'blood_inventory:update_stock' %}" class="btn btn-warning w-100">
+                        <i class="bi bi-plus-circle-fill"></i> Restock Now
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="text-center py-5">
+                <i class="bi bi-inbox display-1 text-muted"></i>
+                <p class="lead text-muted">No low stock items</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+<div class="text-center py-5 my-5">
+    <i class="bi bi-check-circle-fill text-success" style="font-size: 6rem;"></i>
+    <h2 class="text-success mt-4">All Stock Levels Good! 🎉</h2>
+    <p class="lead text-muted">No low stock alerts</p>
+    <a href="{% url 'blood_inventory:dashboard' %}" class="btn btn-success btn-lg">
+        <i class="bi bi-house"></i> Dashboard
+    </a>
+</div>
+{% endif %}
+
+<div class="text-center mt-5">
+    <a href="{% url 'blood_inventory:dashboard' %}" class="btn btn-primary btn-lg me-3">
+        <i class="bi bi-house-door"></i> Dashboard
+    </a>
+    <a href="{% url 'blood_inventory:update_stock' %}" class="btn btn-warning btn-lg">
+        <i class="bi bi-plus-circle"></i> Add Stock
+    </a>
+</div>
+{% endblock %}

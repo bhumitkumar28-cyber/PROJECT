@@ -1,0 +1,162 @@
+{% extends 'blood_requests/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow border-0">
+            <div class="card-header bg-gradient bg-danger text-white">
+                <h2 class="mb-0"><i class="bi bi-droplet-half"></i> Create Blood Request</h2>
+                <p class="mb-0 opacity-75">Select blood group and fill patient details</p>
+            </div>
+            <div class="card-body p-4">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    <div class="row g-4">
+                        <!-- BLOOD GROUP - Full Width -->
+                        <div class="col-12 mb-4">
+                            <label class="form-label fw-bold fs-5 mb-3">
+                                🩸 <strong>Blood Group</strong> <span class="text-danger">*</span>
+                            </label>
+                            <small class="text-muted d-block mb-3">Select the required blood type</small>
+                            
+                            <div class="row g-2">
+                                <div class="col-auto">
+                                    <div class="form-check form-check-inline">
+                                        {{ form.blood_group }}
+                                        {% if form.blood_group.errors %}
+                                            <div class="invalid-feedback d-block">{{ form.blood_group.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ROW 1: Quantity + Location -->
+                        <div class="col-md-6">
+                            <label for="{{ form.quantity.id_for_label }}" class="form-label fw-bold">
+                                📦 <strong>Units Needed</strong> <span class="text-danger">*</span>
+                            </label>
+                            <small class="text-muted d-block mb-2">1-50 units</small>
+                            {{ form.quantity }}
+                            {% if form.quantity.errors %}
+                                <div class="invalid-feedback d-block">{{ form.quantity.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.location.id_for_label }}" class="form-label fw-bold">
+                                📍 <strong>Location</strong> <span class="text-danger">*</span>
+                            </label>
+                            <small class="text-muted d-block mb-2">City/Area (e.g., Mumbai, Andheri)</small>
+                            {{ form.location }}
+                            {% if form.location.errors %}
+                                <div class="invalid-feedback d-block">{{ form.location.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- ROW 2: Hospital + Patient -->
+                        <div class="col-md-6">
+                            <label for="{{ form.hospital_name.id_for_label }}" class="form-label fw-bold">
+                                🏥 <strong>Hospital/Clinic</strong> <span class="text-danger">*</span>
+                            </label>
+                            <small class="text-muted d-block mb-2">Full name & address</small>
+                            {{ form.hospital_name }}
+                            {% if form.hospital_name.errors %}
+                                <div class="invalid-feedback d-block">{{ form.hospital_name.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.patient_name.id_for_label }}" class="form-label fw-bold">
+                                👤 <strong>Patient Name</strong> <span class="text-danger">*</span>
+                            </label>
+                            <small class="text-muted d-block mb-2">Full name</small>
+                            {{ form.patient_name }}
+                            {% if form.patient_name.errors %}
+                                <div class="invalid-feedback d-block">{{ form.patient_name.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- ROW 3: Contact + Urgency -->
+                        <div class="col-md-6">
+                            <label for="{{ form.contact_number.id_for_label }}" class="form-label fw-bold">
+                                📱 <strong>Contact Number</strong> <span class="text-danger">*</span>
+                            </label>
+                            <small class="text-muted d-block mb-2">10-digit mobile (WhatsApp preferred)</small>
+                            {{ form.contact_number }}
+                            {% if form.contact_number.errors %}
+                                <div class="invalid-feedback d-block">{{ form.contact_number.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">
+                                🚨 <strong>Urgency Level</strong> <span class="text-danger">*</span>
+                            </label>
+                            <small class="text-muted d-block mb-2">How urgent is it?</small>
+                            {{ form.urgency }}
+                            {% if form.urgency.errors %}
+                                <div class="invalid-feedback d-block">{{ form.urgency.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- ROW 4: Deadline + Description -->
+                        <div class="col-md-6">
+                            <label for="{{ form.deadline.id_for_label }}" class="form-label fw-bold">
+                                ⏰ <strong>Deadline Date</strong>
+                            </label>
+                            <small class="text-muted d-block mb-2">Blood needed by (optional)</small>
+                            {{ form.deadline }}
+                            {% if form.deadline.errors %}
+                                <div class="invalid-feedback d-block">{{ form.deadline.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.description.id_for_label }}" class="form-label fw-bold">
+                                ℹ️ <strong>Additional Info</strong>
+                            </label>
+                            <small class="text-muted d-block mb-2">Condition, age, reason etc.</small>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback d-block">{{ form.description.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT BUTTONS -->
+                    <div class="mt-5 pt-4 border-top">
+                        <div class="d-grid d-md-flex gap-3 justify-content-md-start">
+                            <button type="submit" class="btn btn-danger btn-lg px-5 py-2">
+                                <i class="bi bi-send-check-fill me-2"></i>
+                                <strong>Create Blood Request</strong>
+                            </button>
+                            <a href="{% url 'blood_requests:request_list' %}" class="btn btn-outline-secondary px-4 py-2">
+                                <i class="bi bi-arrow-left me-2"></i>Back to List
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS for better form styling -->
+<style>
+    .form-control, .form-select {
+        border-radius: 8px;
+        border: 2px solid #e9ecef;
+        padding: 12px 16px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+    .form-check-input:checked {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+    .card-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    }
+</style>
+{% endblock %}

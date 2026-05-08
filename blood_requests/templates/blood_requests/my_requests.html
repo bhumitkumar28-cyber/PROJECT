@@ -1,0 +1,47 @@
+{% extends 'blood_requests/base.html' %}
+{% block content %}
+<h2>My Blood Requests</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Blood Group</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Location</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in requests %}
+            <tr>
+                <td>{{ request.patient_name }}</td>
+                <td>
+                    <span class="badge bg-primary">{{ request.blood_group }}</span>
+                </td>
+                <td>{{ request.quantity }} units</td>
+                <td>
+                    <span class="badge bg-{% if request.status == 'pending' %}warning 
+                        {% elif request.status == 'fulfilled' %}success 
+                        {% else %}secondary {% endif %}">
+                        {{ request.get_status_display }}
+                    </span>
+                </td>
+                <td>{{ request.location }}</td>
+                <td>{{ request.created_at|date:"M d, Y" }}</td>
+                <td>
+                    <a href="{{ request.get_absolute_url }}" class="btn btn-sm btn-outline-primary">View</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center">No requests found. <a href="{% url 'blood_requests:create_request' %}">Create one now!</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

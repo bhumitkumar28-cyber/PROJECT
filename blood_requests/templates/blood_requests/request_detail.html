@@ -1,0 +1,83 @@
+{% extends 'blood_requests/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow request-card">
+            <div class="card-header bg-danger text-white">
+                <h3 class="mb-0">
+                    <i class="bi bi-droplet"></i> {{ request.blood_group }} Blood Request
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><strong>{{ request.patient_name }}</strong></h5>
+                        <p><strong>Quantity:</strong> {{ request.quantity }} units</p>
+                        <p><strong>Location:</strong> {{ request.location }}</p>
+                        <p><strong>Hospital:</strong> {{ request.hospital_name }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Urgency:</strong> 
+                            <span class="badge bg-{{ request.urgency|lower }} text-white">{{ request.get_urgency_display }}</span>
+                        </p>
+                        
+                        <!-- 🔥 ADD COPY BUTTON FOR CONTACT HERE 🔥 -->
+                        <div class="mb-3">
+                            <strong>Contact: </strong>
+                            <span id="contact-{{ request.id }}">{{ request.contact_number }}</span>
+                            <button class="btn btn-sm btn-outline-secondary ms-2" 
+                                    onclick="copyToClipboard('{{ request.contact_number }}', this)"
+                                    data-bs-toggle="tooltip" title="Copy contact number">
+                                <i class="bi bi-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <p><strong>Status:</strong> 
+                            <span class="badge status-badge status-{{ request.status }}">
+                                {{ request.get_status_display }}
+                            </span>
+                        </p>
+                        
+                        {% if request.is_overdue %}
+                            <div class="alert alert-danger">
+                                <strong>OVERDUE!</strong> This request needs immediate attention.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                {% if request.description %}
+                <hr>
+                <h6>Description:</h6>
+                <p>{{ request.description }}</p>
+                {% endif %}
+                
+                <!-- 🔥 ADD COUNTDOWN TIMER FOR DEADLINE HERE 🔥 -->
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <p><strong>Deadline: </strong>
+                            <span class="deadline-timer" data-deadline="{{ request.deadline|date:'c' }}"></span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-muted">
+                            Created: {{ request.created_at|date:"M d, Y H:i" }} | 
+                            Updated: {{ request.updated_at|date:"M d, Y H:i" }}
+                        </small>
+                    </div>
+                </div>
+                
+                <hr>
+                <div class="d-flex gap-2 mt-4">
+                    {% if request.status == 'pending' and user.is_authenticated %}
+                        <a href="{% url 'blood_requests:update_status' request.pk %}" class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> Mark as Fulfilled
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'blood_requests:request_list' %}" class="btn btn-secondary">← Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

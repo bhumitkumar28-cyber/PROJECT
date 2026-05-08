@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Dashboard Hero -->
+<div class="dashboard-hero">
+    <h1>
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </h1>
+    <h3>Welcome back, {{ user.get_full_name|default:user.username }}!</h3>
+    <p class="lead">You're logged in as: <strong>{{ user_type|title }}</strong></p>
+</div>
+
+<!-- Action Buttons Grid -->
+<div class="action-grid">
+    <a href="{% url 'accounts:profile' %}" class="action-card">
+        <i class="fas fa-user-circle"></i>
+        <h4>My Profile</h4>
+        <p>Update your information & preferences</p>
+    </a>
+    
+    <a href="/donor/" class="action-card">
+        <i class="fas fa-users"></i>
+        <h4>Find Donors</h4>
+        <p>Search available donors near you</p>
+    </a>
+    
+    <a href="/donor/history/" class="action-card">
+        <i class="fas fa-history"></i>
+        <h4>Donation History</h4>
+        <p>View your donation records</p>
+    </a>
+    
+    <a href="{% url 'core:about' %}" class="action-card">
+        <i class="fas fa-heart"></i>
+        <h4>Save Lives</h4>
+        <p>Learn how you can help</p>
+    </a>
+</div>
+
+<!-- Logout Button -->
+<div style="max-width: 400px; margin: 4rem auto 0;">
+    <a href="{% url 'accounts:logout' %}" class="btn-danger-dashboard btn-dashboard">
+        <i class="fas fa-sign-out-alt"></i> Sign Out
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'custom_admin/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Manage Blood Requests</h2>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Requester</th>
+                    <th>Blood Group</th>
+                    <th>Units</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                <tr>
+                    <td>{{ request.requester.user.get_full_name }}</td>
+                    <td>{{ request.blood_group }}</td>
+                    <td>{{ request.units }}</td>
+                    <td>
+                        <span class="badge bg-{% if request.status == 'approved' %}success{% elif request.status == 'pending' %}warning{% else %}danger{% endif %}">
+                            {{ request.status|title }}
+                        </span>
+                    </td>
+                    <td>{{ request.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        {% if request.status == 'pending' %}
+                            <a href="{% url 'custom_admin:approve_blood_request' request.pk %}" 
+                               class="btn btn-sm btn-success">
+                                <i class="fas fa-check"></i> Approve
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6">No requests found</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

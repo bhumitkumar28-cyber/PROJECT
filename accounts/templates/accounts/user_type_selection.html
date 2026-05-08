@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-danger text-white text-center">
+                <h3>Join Blood Bank System</h3>
+            </div>
+            <div class="card-body text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{% url 'accounts:donor_signup' %}" class="btn btn-success btn-lg w-100 mb-3">
+                            <i class="fas fa-tint"></i><br>
+                            Become a Donor
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'accounts:requester_signup' %}" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-hospital"></i><br>
+                            Hospital/Organization
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <p>Already have an account? <a href="{% url 'accounts:login' %}">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

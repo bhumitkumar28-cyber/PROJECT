@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Blood Donation Auth{% endblock title %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+</head>
+<body class="app-bg">
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-glass shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{% url 'signup_choice' %}">
+      <i class="bi bi-droplet-half"></i>
+      <span data-i18n="brand">BloodCare</span>
+    </a>
+
+    <div class="d-flex align-items-center gap-2">
+      <button type="button" class="btn btn-sm btn-outline-light" onclick="setLanguage('en')">English</button>
+      <button type="button" class="btn btn-sm btn-outline-light" onclick="setLanguage('hi')">हिंदी</button>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="btn btn-sm btn-light">
+          <i class="bi bi-person-circle me-1"></i><span data-i18n="profile">Profile</span>
+        </a>
+        <a href="{% url 'change_password' %}" class="btn btn-sm btn-warning">
+          <i class="bi bi-key me-1"></i><span data-i18n="password">Password</span>
+        </a>
+        <a href="{% url 'logout' %}" class="btn btn-sm btn-danger">
+          <i class="bi bi-box-arrow-right me-1"></i><span data-i18n="logout">Logout</span>
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}" class="btn btn-sm btn-light">
+          <i class="bi bi-box-arrow-in-right me-1"></i><span data-i18n="login">Login</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<main class="container py-5">
+  {% if messages %}
+    <div class="mb-4">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% block content %}{% endblock content %}
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/accounts.js' %}"></script>
+</body>
+</html>

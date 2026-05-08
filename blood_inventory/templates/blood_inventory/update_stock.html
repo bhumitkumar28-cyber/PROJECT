@@ -1,0 +1,80 @@
+{% extends 'blood_inventory/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow border-0">
+            <div class="card-header bg-gradient bg-primary text-white text-center py-4">
+                <i class="bi bi-syringe fs-1"></i>
+                <h2 class="mb-0 mt-2">Update Blood Stock</h2>
+                <small class="opacity-75">Add or issue blood units</small>
+            </div>
+            <div class="card-body p-5">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold fs-5 mb-3">
+                            <i class="bi bi-droplet-half text-danger"></i> Blood Group
+                        </label>
+                        <select name="blood_group" class="form-select form-select-lg" required>
+                            {% for value, label in all_groups %}
+                            <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold fs-5">
+                                <i class="bi bi-arrow-up-circle text-success"></i> Action
+                            </label>
+                            <select name="action" class="form-select form-select-lg" required>
+                                <option value="IN">
+                                    ➕ Add Stock (Donation Received)
+                                </option>
+                                <option value="OUT">
+                                    ➖ Issue Stock (Send to Hospital)
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold fs-5">
+                                <i class="bi bi-boxes text-info"></i> Units
+                            </label>
+                            <input type="number" 
+                                   name="units" 
+                                   class="form-control form-control-lg" 
+                                   min="1" 
+                                   max="1000" 
+                                   placeholder="e.g., 5" 
+                                   required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label class="form-label fw-bold fs-5">
+                            <i class="bi bi-card-text text-secondary"></i> Reason
+                        </label>
+                        <textarea name="reason" 
+                                  class="form-control" 
+                                  rows="4" 
+                                  placeholder="e.g., Received from blood donation camp, Issued for emergency surgery, Batch expired..."
+                                  required></textarea>
+                    </div>
+                    
+                    <div class="d-grid gap-3 d-md-flex justify-content-md-start">
+                        <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fs-5">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            Update Stock
+                        </button>
+                        <a href="{% url 'blood_inventory:dashboard' %}" 
+                           class="btn btn-outline-secondary btn-lg px-5 py-3">
+                            <i class="bi bi-arrow-left me-2"></i>Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

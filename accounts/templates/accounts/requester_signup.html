@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Donor Signup - Blood Bank{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-gradient-success text-white text-center py-4">
+                <h2 class="mb-1"><i class="fas fa-tint fa-2x"></i> Become a Donor</h2>
+                <p class="mb-0 lead">Save lives by donating blood!</p>
+            </div>
+            <div class="card-body p-5">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Username</label>
+                                <input type="text" class="form-control form-control-lg" name="username" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Email</label>
+                                <input type="email" class="form-control form-control-lg" name="email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">First Name</label>
+                                <input type="text" class="form-control form-control-lg" name="first_name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Last Name</label>
+                                <input type="text" class="form-control form-control-lg" name="last_name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Password</label>
+                                <input type="password" class="form-control form-control-lg" name="password1" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Confirm Password</label>
+                                <input type="password" class="form-control form-control-lg" name="password2" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Phone Number</label>
+                                <input type="tel" class="form-control form-control-lg" name="phone_number" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Blood Group <span class="text-danger">*</span></label>
+                                <select class="form-select form-control-lg" name="blood_group" required>
+                                    <option value="">Select Blood Group</option>
+                                    <option value="A+">A+ Positive</option>
+                                    <option value="A-">A Negative</option>
+                                    <option value="B+">B+ Positive</option>
+                                    <option value="B-">B Negative</option>
+                                    <option value="AB+">AB+ Positive</option>
+                                    <option value="AB-">AB Negative</option>
+                                    <option value="O+">O+ Positive</option>
+                                    <option value="O-">O Negative</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="form-label fw-bold">Address</label>
+                        <textarea class="form-control form-control-lg" name="address" rows="4" required 
+                                placeholder="Enter your complete address"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100 py-3 shadow-lg">
+                        <i class="fas fa-heart me-2"></i>Join as Donor
+                    </button>
+                </form>
+
+                <div class="text-center mt-4 pt-4 border-top">
+                    <p class="mb-2">Already a donor? <a href="{% url 'accounts:login' %}" class="text-success fw-bold">Login here</a></p>
+                    <a href="{% url 'accounts:user_type_selection' %}" class="btn btn-outline-secondary btn-sm">
+                        ← Back to Account Types
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

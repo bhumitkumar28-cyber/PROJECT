@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: #828fa9;
+  background: linear-gradient(135deg, #1b2140 0%, #1f2f55 45%, #1d4b7a 100%);
+  min-height: 100vh;
+}
+.custom-navbar .container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.custom-navbar {
+  background: rgba(20, 24, 48, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-brand,
+.nav-link {
+  color: #f8fafc !important;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #c7d2fe !important;
+}
+
+.card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 35px rgba(212, 209, 209, 0.22) !important;
+  color: #b6c1d6;
+}
+
+.card-header.bg-danger {
+  background: linear-gradient(135deg, #5f7df7 0%, #9b6bdb 100%) !important;
+  border-bottom: none;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.form-label,
+.text-center p,
+hr {
+  color: #e5e7eb;
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.65rem;
+  padding: 0.75rem 0.95rem;
+}
+
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: #8a7df2;
+  box-shadow: 0 0 0 3px rgba(138, 125, 242, 0.18);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #5f7df7 0%, #9b6bdb 100%) !important;
+  border: none !important;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(95, 125, 247, 0.28);
+}
+
+.btn-danger:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-outline-danger {
+  color: #e5e7eb !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.btn-outline-danger:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+
+a.text-danger {
+  color: #c7d2fe !important;
+  text-decoration: none;
+}
+
+a.text-danger:hover {
+  text-decoration: underline;
+}
+
+.alert {
+  border: none;
+  border-radius: 0.75rem;
+}
+
+.site-footer {
+  background: rgba(20, 24, 48, 0.95);
+  color: #cbd5e1;
+  text-align: center;
+  padding: 1.25rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}

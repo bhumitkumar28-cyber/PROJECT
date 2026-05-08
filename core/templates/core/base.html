@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Blood Donation{% endblock %}</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Your Base CSS (REQUIRED) -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    
+
+</head>
+<body>
+<!-- Premium Navbar (NO BOOTSTRAP) -->
+<nav class="navbar">
+    <div class="container">
+        <a class="nav-brand" href="/">
+            <i class="fas fa-tint"></i> BloodLink
+        </a>
+        
+        <ul class="nav-links">
+            <li>
+                <a href="/donor/" class="nav-btn">
+                    <i class="fas fa-users"></i> Find Donors
+                </a>
+            </li>
+            
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="/donor/dashboard/" class="nav-btn">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/donor/profile/" class="nav-btn">
+                        <i class="fas fa-user"></i> {{ user.first_name|default:user.username|truncatechars:10 }}
+                    </a>
+                </li>
+                <li>
+                    <a href="/donor/history/" class="nav-btn">
+                        <i class="fas fa-history"></i> History
+                    </a>
+                </li>
+                <li>
+                    <a href="/accounts/logout/" class="nav-btn admin-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="/accounts/login/" class="nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </li>
+                <li>
+                    <a href="/accounts/register/" class="nav-btn admin-btn">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<main class="container">
+    <!-- Custom Messages (NO BOOTSTRAP) -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message-alert message-{{ message.tags }}">
+                <i class="fas {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'error' %}fa-exclamation-triangle{% elif message.tags == 'warning' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %}"></i>
+                {{ message }}
+                <button class="message-close">&times;</button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Premium Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 BloodLink - Save Lives, Donate Blood</p>
+        <p class="text-secondary">Made with ❤️ for humanity</p>
+    </div>
+</footer>
+
+<!-- Custom JS for messages -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Close message alerts
+    document.querySelectorAll('.message-close').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.parentElement.style.opacity = '0';
+            setTimeout(() => {
+                this.parentElement.remove();
+            }, 300);
+        });
+    });
+});
+</script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

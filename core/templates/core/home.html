@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloodBank – Save Lives, Donate Blood</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+<nav class="navbar">
+    <div class="nav-brand">❤️ BloodBank</div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="{% url 'core:home' %}" class="nav-btn">
+                Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="{% url 'core:about' %}" class="nav-btn">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'core:how_it_works' %}" class="nav-btn">
+                How It Works
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'core:contact' %}" class="nav-btn">
+                Contact
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'core:dashboard' %}" class="nav-btn">
+                Dashboard
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <h1>Save Lives, Donate Blood</h1>
+    <p>One donation can save up to <span class="highlight">3 lives</span>. Join our network of life-saving donors in Agra, Mathura, and across India.</p>
+    <div class="hero-buttons">
+      <a href="#find-donors" class="btn-hero btn-primary" onclick="scrollToSection('find-donors')">
+        🔍 Find Donors Now
+      </a>
+      <a href="#become-donor" class="btn-hero btn-secondary" onclick="scrollToSection('become-donor')">
+        💉 Become a Donor
+      </a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- HELPLINE -->
+    <section class="helpline-section">
+      <div class="helpline-rotator" id="helpline-rotator">
+        <div class="helpline-label">📞 Emergency Helpline (24/7)</div>
+        <div class="helpline-number" id="helpline-number">______________</div>
+        <div class="helpline-details" id="helpline-details"><strong>Loading...</strong></div>
+        <div class="rotator-indicator" id="rotator-dots"></div>
+      </div>
+    </section>
+    
+
+    <!-- BLOOD GROUPS -->
+    <section class="section">
+      <h2 class="section-title">Available Donors by Blood Group</h2>
+      <div class="blood-groups-grid" id="blood-groups-grid">
+        <!-- Dynamic content loaded by JS -->
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section how-it-works-section" id="how-it-works">
+      <h2 class="section-title">How It Works</h2>
+      
+      <h3 class="section-subtitle donors-title">👨‍⚕️ For Blood Donors</h3>
+      <div class="how-steps donors-steps">
+        <div class="step-card" data-step="1">
+          <div class="step-number">1</div>
+          <div class="step-title">Register as Donor</div>
+          <div class="step-desc">Create your profile with blood group, city, and contact details. Verify your identity to join the network.</div>
+        </div>
+        <div class="step-card" data-step="2">
+          <div class="step-number">2</div>
+          <div class="step-title">Stay Eligible</div>
+          <div class="step-desc">Ensure you're healthy, well-hydrated, and haven't donated in the last 90 days (56 days for platelets).</div>
+        </div>
+        <div class="step-card" data-step="3">
+          <div class="step-number">3</div>
+          <div class="step-title">Get Notified</div>
+          <div class="step-desc">Receive emergency requests in your city for your blood group. Respond instantly when you can help.</div>
+        </div>
+        <div class="step-card" data-step="4">
+          <div class="step-number">4</div>
+          <div class="step-title">Donate & Save</div>
+          <div class="step-desc">Visit the requested blood bank/hospital. Your single donation can save up to three lives.</div>
+        </div>
+      </div>
+
+      <h3 class="section-subtitle requesters-title">🏥 For Requesters (Patients/Families)</h3>
+      <div class="how-steps requesters-steps">
+        <div class="step-card" data-step="1">
+          <div class="step-number">1</div>
+          <div class="step-title">Create Request</div>
+          <div class="step-desc">Log in and submit a blood request with patient details, required blood group, quantity, and hospital location.</div>
+        </div>
+        <div class="step-card" data-step="2">
+          <div class="step-number">2</div>
+          <div class="step-title">Instant Matching</div>
+          <div class="step-desc">Our system instantly finds eligible donors in your city who are ready to donate (≥90 days since last donation).</div>
+        </div>
+        <div class="step-card" data-step="3">
+          <div class="step-number">3</div>
+          <div class="step-title">Connect Directly</div>
+          <div class="step-desc">Get phone/email of matching donors. Contact them immediately to arrange donation at nearest blood bank.</div>
+        </div>
+        <div class="step-card" data-step="4">
+          <div class="step-number">4</div>
+          <div class="step-title">Update Status</div>
+          <div class="step-desc">Once blood is arranged, mark request as "Fulfilled" to notify other donors and keep database clean.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" id="find-donors">
+      <h2>Ready to Make a Difference?</h2>
+      <p>Join <span class="highlight">10,000+</span> life-savers in Uttar Pradesh. We're here 24/7 to connect you.</p>
+      <div style="margin-top: 2rem;">
+        <a href="#" class="btn-cta" onclick="openWhatsApp()">📱 Contact Now on WhatsApp</a>
+        <a href="#" class="btn-cta btn-secondary" style="margin-left: 1rem;" onclick="openDonorForm()">💉 Register as Donor</a>
+      </div>
+    </section>
+
+    <!-- BECOME DONOR -->
+    <section class="section" id="become-donor" style="background: rgba(20, 20, 40, 0.5); border-radius: 30px; padding: 5rem 3rem; margin: 5rem 0;">
+      <h2 class="section-title" style="text-align: center;">Become a Life-Saver Today</h2>
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <p style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 3rem;">
+          Register now and be ready to save lives when emergencies arise in your city!
+        </p>
+        <a href="#" class="btn-hero btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem;" onclick="openDonorForm()">
+          🚀 Register as Donor
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <p>© 2026 BloodBank – Save Lives, Donate Blood. Built for Agra, Mathura, and all of India.</p>
+    <p>Emergency Helpline: <strong>+91 81267 09463</strong> | <a href="mailto:bhumitkumar28@gmail.com" style="color: #4ecdc4;">bhumitkumar28@gmail.com</a></p>
+  </footer>
+
+  <!-- CURSOR FOLLOWER -->
+  <div class="cursor-follower"></div>
+
+<script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>

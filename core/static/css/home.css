@@ -1,0 +1,644 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #797272;
+  --primary-dark: #222020;
+  --secondary: #4ecdc4;
+  --accent: #45b7d1;
+  --dark: #1a1a2e;
+  --dark-secondary: #16213e;
+  --light: #f8f9fa;
+  --text-primary: #ffffff;
+  --text-secondary: #b8c1ec;
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-hero: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --shadow-sm: 0 10px 30px rgba(0,0,0,0.3);
+  --shadow-md: 0 20px 60px rgba(0,0,0,0.4);
+  --shadow-lg: 0 30px 100px rgba(0,0,0,0.5);
+  --border-radius: 24px;
+  --blood-red: #EA1822;
+  --blood-red-light: #F85032;
+  --blood-gradient: linear-gradient(135deg, var(--blood-red), var(--blood-red-light));
+  --blood-drop-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cpattern id='blood-drop' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Cpath d='M10 2 Q12 8 10 14 Q8 8 10 2 Z' fill='%23EA1822' opacity='0.08'/%3E%3Ccircle cx='10' cy='12' r='3' fill='%23F85032' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23blood-drop)'/%3E%3C/svg%3E");
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--gradient-hero);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Navbar - BUTTONS RIGHT → LEFT (Flex Reverse) */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 5%;
+  background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  padding: 1rem 5%;
+}
+
+.nav-brand {
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin-left: auto;
+  flex-direction: row-reverse; /* 🎯 BUTTONS: RIGHT → LEFT */
+}
+
+.nav-btn {
+  color: #f5efef;
+  background: linear-gradient(135deg, #59608c, #59608c);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.nav-btn:hover {
+  background: rgba(230, 221, 221, 0.2);
+  border-color: rgba(255, 107, 107, 0.5);
+  color: #ffffff;
+}
+
+.admin-btn {
+  background: linear-gradient(135deg, #59608c,#59608c);
+  color: #ffffff !important;
+  font-weight: 600;
+  border: none;
+}
+
+.admin-btn:hover {
+  background: linear-gradient(135deg, #ded1d1, #ded1d1);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 5%;
+  margin-top: 80px;
+  position: relative;
+   background: 
+    var(--blood-drop-pattern),
+    var(--gradient-hero),
+    linear-gradient(rgba(234,24,34,0.6), rgba(234,24,34,0.2));
+  background-size: auto, cover, cover;
+  background-position: center, center, center;
+  background-blend-mode: overlay;
+  animation: heroPulse 8s ease-in-out infinite;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="0.5" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+   background: 
+    var(--blood-drop-pattern),
+    radial-gradient(circle at 20% 30%, rgba(248,80,50,0.3), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(234,24,34,0.2), transparent 50%);
+  animation: bloodFloat 20s linear infinite;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  margin-bottom: 2rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.highlight {
+  color: var(--blood-red-light);
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(248,80,50,0.5);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-hero {
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  
+  background: var(--blood-gradient);  
+  box-shadow: var(--shadow-md);
+  border: 2px solid transparent;
+}
+
+.btn-primary:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 25px 80px rgba(102,126,234,0.6);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-6px);
+  border-color: var(--secondary);
+  box-shadow: 0 20px 60px rgba(78,205,196,0.3);
+}
+
+/* Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* Card Styles */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 3rem;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Helpline Section */
+.helpline-section {
+  margin: 6rem 0;
+}
+
+.helpline-rotator {
+  background: rgba(234, 24, 34, 0.2);
+  border: 2px solid rgba(248, 80, 50, 0.5);
+  box-shadow: 0 20px 60px rgba(234,24,34,0.3);
+  background: rgba(255, 107, 107, 0.15);
+  border: 2px solid rgba(255, 107, 107, 0.3);
+  border-radius: var(--border-radius);
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.helpline-rotator::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent, rgba(255,255,255,0.1), transparent 30%);
+  animation: rotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+.helpline-label {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.helpline-number {
+  color: var(--blood-red-light);
+  text-shadow: 0 4px 20px rgba(248,80,50,0.7);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease;
+}
+
+.helpline-details {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* Section Styles */
+.section {
+  margin: 8rem 0;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 4rem 0 2rem 0;
+  opacity: 0.95;
+}
+
+/* Blood Groups Grid */
+.blood-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.blood-group-card {
+  background: rgba(234, 24, 34, 0.15);
+  border: 2px solid rgba(248, 80, 50, 0.4);
+  background: rgba(78, 205, 196, 0.15);
+  border: 2px solid rgba(78, 205, 196, 0.3);
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.blood-group-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--gradient-secondary);
+}
+
+.blood-group-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blood-group-card h3 {
+  background: var(--blood-gradient);
+  
+  
+  background-clip: text;
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blood-group-card .count {
+  color: var(--blood-red-light);
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+}
+
+/* How It Works */
+.how-it-works-section {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius);
+  padding: 6rem 3rem;
+  margin: 8rem 0;
+}
+
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.step-card::before {
+  content: attr(data-step);
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 4rem;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.step-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--secondary);
+}
+
+.step-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem 0;
+}
+
+.step-desc {
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: 6rem 3rem;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.btn-cta {
+  padding: 1.5rem 4rem;
+  font-size: 1.3rem;
+  margin: 0 1rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--blood-gradient);   
+  color: white;
+}
+
+.btn-cta {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+.btn-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-cta.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-cta.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--secondary);
+}
+
+/* Become Donor Section */
+#become-donor {
+  background: rgba(20, 20, 40, 0.5);
+  border-radius: 30px;
+  padding: 5rem 3rem;
+  margin: 5rem 0;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(20px);
+  padding: 4rem 5% 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+footer p {
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+footer a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--primary);
+}
+
+/* Cursor Follower */
+.cursor-follower {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  mix-blend-mode: difference;
+}
+
+/* Rotator Dots */
+.rotator-indicator {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.rotator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.rotator-dot.active {
+  background: var(--primary);
+  transform: scale(1.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 5%;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row-reverse; /* Mobile also RTL */
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-cta {
+     background: var(--blood-gradient);   
+  color: white;
+  }
+  
+  .how-steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .blood-groups-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@keyframes heroPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes bloodFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(5px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+ .circle-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.member-card {
+            text-align: center;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-width: 300px;
+}

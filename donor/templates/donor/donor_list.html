@@ -1,0 +1,31 @@
+<!-- templates/donor/donor_list.html -->
+{% extends 'core/base.html' %}
+{% block title %}Public Donor List{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'donor/css/donor.css' %}">
+<div class="donor-container">
+    <div class="glass-card">
+        <h2>Available Donors ({{ page_obj.paginator.count }})</h2>
+        {% for donor in donors %}
+        <div class="donor-item">
+            <div class="donor-info">
+                <h4>{{ donor.user.get_full_name }} - {{ donor.blood_group }}</h4>
+                <p>{{ donor.city }} | {{ donor.phone }} | {% if donor.available %}✅ Available{% else %}❌ Busy{% endif %}</p>
+                <a href="{{ donor.get_absolute_url }}" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">View Details</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No available donors right now. Check back soon!</p>
+        {% endfor %}
+        <!-- Pagination -->
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

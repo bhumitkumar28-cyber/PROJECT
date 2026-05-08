@@ -1,0 +1,11 @@
+project=blood donation 
+  core=home.html, about, contect, how_to_work
+  account=signup-choice.html for (donor/requester), donor-signup, request-signup, login, profle, change(edit/view), change-password
+  donor=donor-desktop.html, donor-list, donation-form, donation-history, donation-detaial, update_avalability.html(update donation eligibility status
+  request=create-request.html, request_list.html(views all active blood request), request-detail, my-request.html(register's own request history), request-status.html
+  inventory=blood-stock.html, stock-history, low-stock-alert.html
+  addmin-panal= admin-deskboard.html, manage-donors, manage-patients, approve-donations(approve/reject donation offers), approve-request.html(approve/reject), blood-stock-manage.html, reports.html(genrate system request), user-varification.html(verify new user account)
+  search=find-donor.html, search_request, advanced_search.html(multiple-filters search(blood group ,city ,availability))
+  notifications=notification.html,notification_settings.html(configure notification preference (sms/email))
+
+  

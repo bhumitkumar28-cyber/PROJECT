@@ -1,0 +1,85 @@
+{% extends 'blood_inventory/base.html' %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1><i class="bi bi-house-door"></i> Inventory Dashboard</h1>
+        <p class="lead">Total Blood Units: <strong class="text-danger">{{ total_units }}</strong></p>
+    </div>
+</div>
+
+<!-- Critical Alerts -->
+{% if critical_alerts %}
+<div class="alert alert-danger">
+    <h5><i class="bi bi-exclamation-triangle-fill"></i> CRITICAL - Out of Stock!</h5>
+    {% for stock in critical_alerts %}
+        <span class="badge bg-danger me-2">{{ stock.blood_group }}</span>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Low Stock -->
+{% if low_stock_alerts %}
+<div class="alert alert-warning">
+    <h5><i class="bi bi-exclamation-triangle"></i> Low Stock Alert</h5>
+    {% for stock in low_stock_alerts %}
+        <span class="badge bg-warning me-2">{{ stock.blood_group }} ({{ stock.quantity }})</span>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Stock Table -->
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="mb-0"><i class="bi bi-grid-3x3-gap"></i> Current Stock</h5>
+                <a href="{% url 'blood_inventory:update_stock' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Add Stock
+                </a>
+                <!-- Add to dashboard.html card header -->
+<a href="{% url 'blood_inventory:low_stock_alerts' %}" class="btn btn-warning">
+    <i class="bi bi-bell"></i> Low Stock Alerts ({{ low_stock_alerts.count }})
+</a>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Blood Group</th>
+                            <th>Units</th>
+                            <th>Threshold</th>
+                            <th>Status</th>
+                            <th>Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stock in stocks %}
+                        <tr class="{% if stock.stock_status == 'danger' %}table-danger
+                                {% elif stock.stock_status == 'warning' %}table-warning
+                                {% else %}table-success{% endif %}">
+                            <td><h6 class="mb-0">{{ stock.blood_group }}</h6></td>
+                            <td><h5 class="mb-0">{{ stock.quantity }}</h5></td>
+                            <td>{{ stock.low_stock_threshold }}</td>
+                            <td>
+                                <span class="badge bg-{{ stock.stock_status }} fs-6">
+                                    {{ stock.status_text }}
+                                </span>
+                            </td>
+                            <td>{{ stock.last_updated|date:"M d, H:i" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="5" class="text-center py-5">No stock data. <a href="{% url 'blood_inventory:update_stock' %}">Add first stock</a></td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'blood_inventory:history' %}" class="btn btn-outline-primary btn-lg">
+        <i class="bi bi-clock-history"></i> View Complete History
+    </a>
+</div>
+{% endblock %}

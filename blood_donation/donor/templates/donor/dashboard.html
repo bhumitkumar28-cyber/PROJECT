@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Dashboard - {{ user.first_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-center border-primary h-100">
+            <div class="card-body">
+                <i class="fas fa-user-circle fa-4x text-primary mb-3"></i>
+                <h4>{{ donor.name }}</h4>
+                <p class="text-muted">{{ donor.blood_group }} | {{ donor.location }}</p>
+                <span class="badge bg-{{ donor.available|yesno:'success,danger' }} fs-6">
+                    {% if donor.available %}<i class="fas fa-check"></i> Available{% else %}<i class="fas fa-times"></i> Unavailable{% endif %}
+                </span>
+                <hr>
+                <a href="/donor/availability/" class="btn btn-outline-primary">Update Status</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card bg-success text-white">
+                    <div class="card-body text-center">
+                        <i class="fas fa-tint fa-3x mb-2"></i>
+                        <h3>{{ donor.donations.count }}</h3>
+                        <h6>Total Donations</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center">
+                        <i class="fas fa-calendar-check fa-3x mb-2"></i>
+                        <h3>{{ donor.last_donation|date:"M Y"|default:"Never" }}</h3>
+                        <h6>Last Donation</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>Recent Donations <a href="/donor/history/" class="btn btn-sm btn-outline-primary float-end">View All</a></h5>
+            </div>
+            <div class="card-body">
+                {% for donation in donations %}
+                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                    <div>
+                        <strong>{{ donation.date|date }}</strong> - {{ donation.blood_group }}
+                    </div>
+                    <span class="badge bg-success">Completed</span>
+                </div>
+                {% empty %}
+                <p class="text-muted text-center">No donations yet. <a href="/donor/add-donation/">Make first donation</a></p>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <a href="/donor/add-donation/" class="btn btn-success w-100">
+                    <i class="fas fa-plus"></i> Add Donation
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="/donor/history/" class="btn btn-info w-100">
+                    <i class="fas fa-history"></i> Donation History
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

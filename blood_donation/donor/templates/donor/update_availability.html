@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Update Availability{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark text-center">
+                <i class="fas fa-toggle-on fa-2x mb-2"></i>
+                <h3>Update Availability Status</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4 text-center">
+                        <div class="form-check form-switch form-switch-lg d-flex justify-content-center gap-3">
+                            {{ form.available }}
+                            <label class="form-check-label fs-4 fw-bold" for="{{ form.available.id_for_label }}">
+                                {% if form.available.value %}
+                                    <i class="fas fa-check-circle text-success"></i> I'm Available
+                                {% else %}
+                                    <i class="fas fa-times-circle text-danger"></i> I'm Not Available
+                                {% endif %}
+                            </label>
+                        </div>
+                    </div>
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="d-grid gap-2">
+                        <a href="/donor/dashboard/" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-save"></i> Update Status
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

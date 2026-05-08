@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>⚙️ Notification Settings</h2>
+    <form method="post" class="card p-4">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <h5>📨 Delivery</h5>
+                {{ form.email_notifications }}
+                <label>{{ form.email_notifications.label }}</label><br>
+                {{ form.sms_notifications }}
+                <label>{{ form.sms_notifications.label }}</label><br>
+                {{ form.phone_number.label }} {{ form.phone_number }}
+            </div>
+            <div class="col-md-6">
+                <h5>🔔 Types</h5>
+                {{ form.new_request }} {{ form.new_request.label }}<br>
+                {{ form.matching_donor }} {{ form.matching_donor.label }}<br>
+                {{ form.low_stock }} {{ form.low_stock.label }}<br>
+                {{ form.donation_confirmed }} {{ form.donation_confirmed.label }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Save</button>
+    </form>
+</div>
+{% endblock %}
